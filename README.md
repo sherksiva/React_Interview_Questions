@@ -1,6 +1,6 @@
 # React_Interview_Questions
 
-### What is useEffect?
+#### 1. What is useEffect?
 
 #### useEffect is a React Hook that lets you run side effects in functional components — things like:
 
@@ -29,21 +29,21 @@ function MyComponent() {
   return <h1>Hello useEffect!</h1>;
 }
 ```
-##### Runs on every render (if no dependencies):
+##### 2. Runs on every render (if no dependencies):
 
 ```
 useEffect(() => {
   console.log("Runs on every render");
 });
 ```
-##### Runs only once (on mount) (empty dependency array):
+##### 3. Runs only once (on mount) (empty dependency array):
 
 ```
 useEffect(() => {
   console.log("Runs only once (like componentDidMount)");
 }, []);
 ```
-#### Runs when specific values change:
+#### 4. Runs when specific values change:
 
 ```
 const [count, setCount] = useState(0);
@@ -52,7 +52,7 @@ useEffect(() => {
   console.log("Runs when count changes:", count);
 }, [count]);
 ```
-#### With cleanup (e.g. unsubscribe, clear interval):
+#### 5. With cleanup (e.g. unsubscribe, clear interval):
 
 ```
 useEffect(() => {
@@ -66,7 +66,7 @@ useEffect(() => {
 
 ```
 
-#### Fetch API data with useEffect
+#### 6. Fetch API data with useEffect
 
 ```
 import React, { useState, useEffect } from "react";
@@ -96,7 +96,7 @@ function UserList() {
 export default UserList;
 ```
 
-#### Multiple useEffect hooks in in single component
+#### 7. Multiple useEffect hooks in in single component
 
 ```
 import React, { useState, useEffect } from "react";
@@ -157,7 +157,7 @@ function MultiEffectExample() {
 
 export default MultiEffectExample;
 ```
-#### automatically fetching data every 10 seconds ?
+#### 8.Automatically fetching data every 10 seconds ?
 ```
 import React, { useState, useEffect } from "react";
 
