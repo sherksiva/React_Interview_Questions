@@ -2,7 +2,7 @@
 
 #### 1. What is useEffect?
 
-#### useEffect is a React Hook that lets you run side effects in functional components — things like:
+## useEffect is a React Hook that lets you run side effects in functional components — things like:
 
 1. Fetching data from an API
 
@@ -29,21 +29,21 @@ function MyComponent() {
   return <h1>Hello useEffect!</h1>;
 }
 ```
-##### 2. Runs on every render (if no dependencies):
+## 2. Runs on every render (if no dependencies):
 
 ```
 useEffect(() => {
   console.log("Runs on every render");
 });
 ```
-##### 3. Runs only once (on mount) (empty dependency array):
+## 3. Runs only once (on mount) (empty dependency array):
 
 ```
 useEffect(() => {
   console.log("Runs only once (like componentDidMount)");
 }, []);
 ```
-#### 4. Runs when specific values change:
+## 4. Runs when specific values change:
 
 ```
 const [count, setCount] = useState(0);
@@ -52,7 +52,7 @@ useEffect(() => {
   console.log("Runs when count changes:", count);
 }, [count]);
 ```
-#### 5. With cleanup (e.g. unsubscribe, clear interval):
+## 5. With cleanup (e.g. unsubscribe, clear interval):
 
 ```
 useEffect(() => {
@@ -66,7 +66,7 @@ useEffect(() => {
 
 ```
 
-#### 6. Fetch API data with useEffect
+## 6. Fetch API data with useEffect
 
 ```
 import React, { useState, useEffect } from "react";
@@ -96,7 +96,7 @@ function UserList() {
 export default UserList;
 ```
 
-#### 7. Multiple useEffect hooks in in single component
+## 7. Multiple useEffect hooks in in single component
 
 ```
 import React, { useState, useEffect } from "react";
@@ -157,7 +157,8 @@ function MultiEffectExample() {
 
 export default MultiEffectExample;
 ```
-#### 8.Automatically fetching data every 10 seconds ?
+
+## 8.Automatically fetching data every 10 seconds ?
 ```
 import React, { useState, useEffect } from "react";
 
@@ -213,14 +214,15 @@ function AutoRefreshExample() {
 
 export default AutoRefreshExample;
 ```
-### React Crud Operation Hooks
 
-#### 1. Setup and Installation:
+## React Crud Operation Hooks
+
+## 1. Setup and Installation:
 
 - Create a React project: npx create-react-app my-crud-app
 - Install Axios: npm install axios
   
-#### 2. Data Service (e.g., http-common.js):
+## 2. Data Service (e.g., http-common.js):
 
 - Create a file to configure Axios with your API base URL and headers.
 ```
@@ -235,7 +237,7 @@ export default AutoRefreshExample;
     });
 
 ```
-### 3. Custom Hook for CRUD (e.g., useCrud.js):
+## 3. Custom Hook for CRUD (e.g., useCrud.js):
 
 - Create a custom hook to encapsulate the CRUD logic, managing state and making Axios calls.
 
@@ -303,7 +305,7 @@ export default AutoRefreshExample;
 
     export default useCrud;
 ```
-#### 4. Using the Hook in a Component:
+## 4. Using the Hook in a Component:
 
 - Import and use the useCrud hook in your React components to perform CRUD operations.
 
