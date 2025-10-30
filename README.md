@@ -213,6 +213,211 @@ function AutoRefreshExample() {
 
 export default AutoRefreshExample;
 ```
+### React Crud Operation Hooks
+
+#### 1. Setup and Installation:
+
+- Create a React project: npx create-react-app my-crud-app
+- Install Axios: npm install axios
+  
+#### 2. Data Service (e.g., http-common.js):
+
+- Create a file to configure Axios with your API base URL and headers.
+```
+    // src/http-common.js
+    import axios from "axios";
+
+    export default axios.create({
+      baseURL: "http://localhost:8080/api", // Replace with your API base URL
+      headers: {
+        "Content-type": "application/json"
+      }
+    });
+
+```
+### 3. Custom Hook for CRUD (e.g., useCrud.js):
+
+- Create a custom hook to encapsulate the CRUD logic, managing state and making Axios calls.
+
+```
+    // src/hooks/useCrud.js
+    import { useState, useEffect } from "react";
+    import http from "../http-common"; // Your Axios instance
+
+    const useCrud = (endpoint) => {
+      const [data, setData] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+
+      // Read (Fetch all items)
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const response = await http.get(endpoint);
+          setData(response.data);
+        } catch (err) {
+          setError(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        fetchData();
+      }, [endpoint]);
+
+      // Create
+      const createItem = async (newItem) => {
+        try {
+          const response = await http.post(endpoint, newItem);
+          setData((prevData) => [...prevData, response.data]);
+        } catch (err) {
+          setError(err);
+        }
+      };
+
+      // Update
+      const updateItem = async (id, updatedItem) => {
+        try {
+          const response = await http.put(`${endpoint}/${id}`, updatedItem);
+          setData((prevData) =>
+            prevData.map((item) => (item.id === id ? response.data : item))
+          );
+        } catch (err) {
+          setError(err);
+        }
+      };
+
+      // Delete
+      const deleteItem = async (id) => {
+        try {
+          await http.delete(`${endpoint}/${id}`);
+          setData((prevData) => prevData.filter((item) => item.id !== id));
+        } catch (err) {
+          setError(err);
+        }
+      };
+
+      return { data, loading, error, createItem, updateItem, deleteItem, fetchData };
+    };
+
+    export default useCrud;
+```
+#### 4. Using the Hook in a Component:
+
+- Import and use the useCrud hook in your React components to perform CRUD operations.
+
+```
+    // src/hooks/useCrud.js
+    import { useState, useEffect } from "react";
+    import http from "../http-common"; // Your Axios instance
+
+    const useCrud = (endpoint) => {
+      const [data, setData] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+
+      // Read (Fetch all items)
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const response = await http.get(endpoint);
+          setData(response.data);
+        } catch (err) {
+          setError(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        fetchData();
+      }, [endpoint]);
+
+      // Create
+      const createItem = async (newItem) => {
+        try {
+          const response = await http.post(endpoint, newItem);
+          setData((prevData) => [...prevData, response.data]);
+        } catch (err) {
+          setError(err);
+        }
+      };
+
+      // Update
+      const updateItem = async (id, updatedItem) => {
+        try {
+          const response = await http.put(`${endpoint}/${id}`, updatedItem);
+          setData((prevData) =>
+            prevData.map((item) => (item.id === id ? response.data : item))
+          );
+        } catch (err) {
+          setError(err);
+        }
+      };
+
+      // Delete
+      const deleteItem = async (id) => {
+        try {
+          await http.delete(`${endpoint}/${id}`);
+          setData((prevData) => prevData.filter((item) => item.id !== id));
+        } catch (err) {
+          setError(err);
+        }
+      };
+
+      return { data, loading, error, createItem, updateItem, deleteItem, fetchData };
+    };
+
+    export default useCrud;
+```
+#### 5. Using the Hook in a Component:
+
+- Import and use the useCrud hook in your React components to perform CRUD operations.
+
+```
+    // src/components/TutorialList.js
+    import React from "react";
+    import useCrud from "../hooks/useCrud";
+
+    function TutorialList() {
+      const { data: tutorials, loading, error, deleteItem } = useCrud("/tutorials");
+
+      if (loading) return <p>Loading tutorials...</p>;
+      if (error) return <p>Error: {error.message}</p>;
+
+      const handleDelete = async (id) => {
+        await deleteItem(id);
+        // Optionally, refetch data if needed, though deleteItem updates local state
+      };
+
+      return (
+        <div>
+          <h2>Tutorials</h2>
+          <ul>
+            {tutorials.map((tutorial) => (
+              <li key={tutorial.id}>
+                {tutorial.title}
+                <button onClick={() => handleDelete(tutorial.id)}>Delete</button>
+                {/* Add Update button and form */}
+              </li>
+            ))}
+          </ul>
+          {/* Add Create form */}
+        </div>
+      );
+    }
+
+    export default TutorialList;
+```
+## Key Concepts:
+
+- useState: To manage the data, loading state, and error state within the custom hook.
+- useEffect: To fetch data when the component mounts or when dependencies change.
+- Axios: For making HTTP requests (GET, POST, PUT, DELETE) to your API.
+- Custom Hooks: To encapsulate reusable logic and stateful behavior, making your components cleaner and more maintainable.
+
+
 
 
 
