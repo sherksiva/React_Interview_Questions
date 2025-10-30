@@ -371,7 +371,7 @@ export default AutoRefreshExample;
 
     export default useCrud;
 ```
-#### 5. Using the Hook in a Component:
+## 5. Using the Hook in a Component:
 
 - Import and use the useCrud hook in your React components to perform CRUD operations.
 
