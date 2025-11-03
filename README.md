@@ -2,7 +2,7 @@
 
 #### 1. What is useEffect?
 
-## useEffect is a React Hook that lets you run side effects in functional components — things like:
+### useEffect is a React Hook that lets you run side effects in functional components — things like:
 
 1. Fetching data from an API
 
@@ -29,21 +29,21 @@ function MyComponent() {
   return <h1>Hello useEffect!</h1>;
 }
 ```
-## 2. Runs on every render (if no dependencies):
+### 2. Runs on every render (if no dependencies):
 
 ```
 useEffect(() => {
   console.log("Runs on every render");
 });
 ```
-## 3. Runs only once (on mount) (empty dependency array):
+### 3. Runs only once (on mount) (empty dependency array):
 
 ```
 useEffect(() => {
   console.log("Runs only once (like componentDidMount)");
 }, []);
 ```
-## 4. Runs when specific values change:
+### 4. Runs when specific values change:
 
 ```
 const [count, setCount] = useState(0);
@@ -52,7 +52,7 @@ useEffect(() => {
   console.log("Runs when count changes:", count);
 }, [count]);
 ```
-## 5. With cleanup (e.g. unsubscribe, clear interval):
+### 5. With cleanup (e.g. unsubscribe, clear interval):
 
 ```
 useEffect(() => {
@@ -66,7 +66,7 @@ useEffect(() => {
 
 ```
 
-## 6. Fetch API data with useEffect
+### 6. Fetch API data with useEffect
 
 ```
 import React, { useState, useEffect } from "react";
@@ -96,7 +96,7 @@ function UserList() {
 export default UserList;
 ```
 
-## 7. Multiple useEffect hooks in in single component
+### 7. Multiple useEffect hooks in in single component
 
 ```
 import React, { useState, useEffect } from "react";
@@ -158,7 +158,7 @@ function MultiEffectExample() {
 export default MultiEffectExample;
 ```
 
-## 8.Automatically fetching data every 10 seconds ?
+### 8.Automatically fetching data every 10 seconds ?
 ```
 import React, { useState, useEffect } from "react";
 
@@ -215,11 +215,11 @@ function AutoRefreshExample() {
 export default AutoRefreshExample;
 ```
 
-## JEST Unit testcase Questions
+### JEST Unit testcase Questions
 
-## In Jest, beforeEach and afterEach are global hook functions used for setting up and tearing down the environment for individual tests.
+ In Jest, beforeEach and afterEach are global hook functions used for setting up and tearing down the environment for individual tests.
 
-## beforeEach(fn, timeout)
+### beforeEach(fn, timeout)
 
 - beforeEach runs a provided function (fn) before each test in the current scope (e.g., within a describe block or at the top level of a test file).
 - It is commonly used for initializing state, mocking modules, or setting up test data that needs to be fresh for every test to ensure isolation.
@@ -246,7 +246,7 @@ export default AutoRefreshExample;
     });
   });
   ```
-## afterEach(fn, timeout) 
+### afterEach(fn, timeout) 
 
 - afterEach runs a provided function (fn) after each test in the current scope.
 - It is typically used for cleaning up resources, resetting mocks, or performing any necessary teardown to ensure a clean state for subsequent tests.
@@ -275,20 +275,20 @@ describe('My Feature', () => {
 });
 ```
 
-## Key Differences and Use Cases:
+### Key Differences and Use Cases:
 - Frequency: beforeEach and afterEach run for every single test, while beforeAll and afterAll run only once before and after all tests in a scope, respectively.
 - Isolation: beforeEach and afterEach are crucial for ensuring test isolation, preventing side effects from one test impacting another.
 - Setup/Teardown: Use beforeEach for setup that needs to be repeated for every test, and afterEach for corresponding cleanup.
 
 
-## React Crud Operation Hooks
+### React Crud Operation Hooks
 
-## 1. Setup and Installation:
+### 1. Setup and Installation:
 
 - Create a React project: npx create-react-app my-crud-app
 - Install Axios: npm install axios
   
-## 2. Data Service (e.g., http-common.js):
+### 2. Data Service (e.g., http-common.js):
 
 - Create a file to configure Axios with your API base URL and headers.
 ```
@@ -303,7 +303,7 @@ describe('My Feature', () => {
     });
 
 ```
-## 3. Custom Hook for CRUD (e.g., useCrud.js):
+### 3. Custom Hook for CRUD (e.g., useCrud.js):
 
 - Create a custom hook to encapsulate the CRUD logic, managing state and making Axios calls.
 
@@ -371,7 +371,7 @@ describe('My Feature', () => {
 
     export default useCrud;
 ```
-## 4. Using the Hook in a Component:
+### 4. Using the Hook in a Component:
 
 - Import and use the useCrud hook in your React components to perform CRUD operations.
 
@@ -439,7 +439,7 @@ describe('My Feature', () => {
 
     export default useCrud;
 ```
-## 5. Using the Hook in a Component:
+### 5. Using the Hook in a Component:
 
 - Import and use the useCrud hook in your React components to perform CRUD operations.
 
@@ -478,14 +478,14 @@ describe('My Feature', () => {
 
     export default TutorialList;
 ```
-## Key Concepts:
+### Key Concepts:
 
 - useState: To manage the data, loading state, and error state within the custom hook.
 - useEffect: To fetch data when the component mounts or when dependencies change.
 - Axios: For making HTTP requests (GET, POST, PUT, DELETE) to your API.
 - Custom Hooks: To encapsulate reusable logic and stateful behavior, making your components cleaner and more maintainable.
 
-## Form Validation React 
+### Form Validation React 
 
 ```
 // Form.js
