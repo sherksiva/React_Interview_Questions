@@ -215,6 +215,72 @@ function AutoRefreshExample() {
 export default AutoRefreshExample;
 ```
 
+## JEST Unit testcase Questions
+
+## In Jest, beforeEach and afterEach are global hook functions used for setting up and tearing down the environment for individual tests.
+
+## beforeEach(fn, timeout)
+
+- beforeEach runs a provided function (fn) before each test in the current scope (e.g., within a describe block or at the top level of a test file).
+- It is commonly used for initializing state, mocking modules, or setting up test data that needs to be fresh for every test to ensure isolation.
+- If the function returns a Promise or is an async function, Jest waits for the Promise to resolve before proceeding with the test. 
+- An optional timeout (in milliseconds) can be provided to specify how long Jest should wait for the function to complete.
+
+  ```
+  describe('My Feature', () => {
+    let data;
+  
+    beforeEach(() => {
+      // Initialize data for each test
+      data = { value: 0 };
+      console.log('beforeEach: data initialized');
+    });
+  
+    test('should increment data value', () => {
+      data.value++;
+      expect(data.value).toBe(1);
+    });
+  
+    test('should reset data value for new test', () => {
+      expect(data.value).toBe(0); // Data is re-initialized by beforeEach
+    });
+  });
+  ```
+## afterEach(fn, timeout) 
+
+- afterEach runs a provided function (fn) after each test in the current scope.
+- It is typically used for cleaning up resources, resetting mocks, or performing any necessary teardown to ensure a clean state for subsequent tests.
+- Similar to beforeEach, if the function returns a Promise or is an async function, Jest waits for the Promise to resolve.
+- An optional timeout can also be provided.
+
+``` 
+describe('My Feature', () => {
+  let mockFunction;
+
+  beforeEach(() => {
+    mockFunction = jest.fn();
+    console.log('beforeEach: mockFunction created');
+  });
+
+  afterEach(() => {
+    // Clean up or reset mocks after each test
+    mockFunction.mockRestore(); // Or similar cleanup
+    console.log('afterEach: mockFunction cleaned up');
+  });
+
+  test('should call mockFunction once', () => {
+    mockFunction();
+    expect(mockFunction).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+## Key Differences and Use Cases:
+- Frequency: beforeEach and afterEach run for every single test, while beforeAll and afterAll run only once before and after all tests in a scope, respectively.
+- Isolation: beforeEach and afterEach are crucial for ensuring test isolation, preventing side effects from one test impacting another.
+- Setup/Teardown: Use beforeEach for setup that needs to be repeated for every test, and afterEach for corresponding cleanup.
+
+
 ## React Crud Operation Hooks
 
 ## 1. Setup and Installation:
