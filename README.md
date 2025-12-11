@@ -96,7 +96,74 @@ function UserList() {
 export default UserList;
 ```
 
-### 7. Multiple useEffect hooks in in single component
+### 7. Post API data in async
+
+```
+  const createItem = async (newItem) => {
+    setLoading(true);
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newItem),
+      });
+      if (!response.ok) throw new Error('Failed to create item');
+      const createdItem = await response.json();
+      setData((prevData) => [...prevData, createdItem]);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+```
+
+### 8. PUT API data in async
+
+```
+// Update
+  const updateItem = async (id, updatedItem) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${apiUrl}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedItem),
+      });
+      if (!response.ok) throw new Error('Failed to update item');
+      const result = await response.json();
+      setData((prevData) =>
+        prevData.map((item) => (item.id === id ? result : item))
+      );
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+```
+
+### 9. Delete API in async
+
+```
+  // Delete
+  const deleteItem = async (id) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${apiUrl}/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) throw new Error('Failed to delete item');
+      setData((prevData) => prevData.filter((item) => item.id !== id));
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+```
+
+### 10. Multiple useEffect hooks in in single component
 
 ```
 import React, { useState, useEffect } from "react";
@@ -158,7 +225,7 @@ function MultiEffectExample() {
 export default MultiEffectExample;
 ```
 
-### 8.Automatically fetching data every 10 seconds ?
+### 11.Automatically fetching data every 10 seconds ?
 ```
 import React, { useState, useEffect } from "react";
 
